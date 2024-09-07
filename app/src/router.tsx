@@ -16,12 +16,14 @@ import { createBrowserRouter } from 'react-router-dom';
 import { App } from './App.tsx';
 import { ClassList } from './examples/node/class-list.tsx';
 import { DebounceTime } from './examples/rxjs/debounce-time.tsx';
+import { Welcome } from './Welcome.tsx';
 
 export const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
     children: [
+      { path: '/', element: <Welcome /> },
       // State hooks documentation
       { path: '/hook/state/root-state', element: <GlobalState /> },
       // RxJS hooks documentation

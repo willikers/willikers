@@ -20,7 +20,7 @@ export const App = () => {
           <Outlet />
         </main>
       </div>
-      <footer className="h-[300px] bg-slate-950 p-20">hello</footer>
+      <footer className="h-[300px] bg-slate-950 p-20 text-center">Willikers</footer>
     </div>
   );
 };
