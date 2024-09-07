@@ -1,7 +1,17 @@
-import { Outlet } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
 import { Nav } from './Nav.tsx';
 
 export const App = () => {
+  const location = useLocation();
+  // Used for github pages to redirect to the correct page
+  useEffect(() => {
+    if (window.location.search.includes('redirect=')) {
+      location.pathname = atob(window.location.search.split('=')[1]);
+      location.search = '';
+    }
+  }, []);
+
   return (
     <div className="m-auto flex min-h-full w-full flex-col">
       <div className="m-auto flex w-full max-w-[70rem]">
