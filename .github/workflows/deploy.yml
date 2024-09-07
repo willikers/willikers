@@ -7,14 +7,6 @@ on:
 
 jobs:
   build:
-    permissions:
-      pages: write
-      id-token: write
-
-    environment:
-      name: github-pages
-      url:
-
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code
@@ -47,8 +39,7 @@ jobs:
         run: npm run build -w app
 
       - name: Copy files from source to destination
-        run: |
-          cp -r src/dist/app/* dest/
+        run: cp -r src/dist/app/* dest/
 
       - name: Check for new files
         working-directory: dest
@@ -69,6 +60,7 @@ jobs:
           git config --global user.name "${{ vars.BOT_NAME }}"
           git config --global user.email "${{ vars.BOT_EMAIL }}"
           git commit -am "Deploy application from ref: ${{ github.ref }}"
+          git remote set-url origin https://${{ secrets.PAT }}@github.com/willikers/willikers.github.io.git
           git push
         # run: |
         #   #
