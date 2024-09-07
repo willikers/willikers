@@ -30,7 +30,7 @@ jobs:
           path: dest
           ref: main
           repository: willikers/willikers.github.io
-          # token: ${{ secrets.BOT_TOKEN }}
+          token: ${{ secrets.PAT }}
           persist-credentials: false
 
       - name: Setup Node.js
@@ -66,8 +66,8 @@ jobs:
         if: ${{steps.hasNewFiles.outputs.changed == 'true'}}
         working-directory: dest
         run: |
-          git config --global user.name "willikers"
-          git config --global user.email "${{ secrets.BOT_EMAIL }}"
+          git config --global user.name "${{ vars.BOT_NAME }}"
+          git config --global user.email "${{ vars.BOT_EMAIL }}"
           git commit -am "Deploy application from ref: ${{ github.ref }}"
           git push
         # run: |
