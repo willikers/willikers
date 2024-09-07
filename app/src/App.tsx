@@ -1,14 +1,12 @@
 import { useEffect } from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet, redirect } from 'react-router-dom';
 import { Nav } from './Nav.tsx';
 
 export const App = () => {
-  const location = useLocation();
   // Used for github pages to redirect to the correct page
   useEffect(() => {
     if (window.location.search.includes('redirect=')) {
-      location.pathname = atob(window.location.search.split('=')[1]);
-      location.search = '';
+      redirect(atob(window.location.search.split('=')[1]));
     }
   }, []);
 
