@@ -1,12 +1,14 @@
 import { useEffect } from 'react';
-import { Outlet, redirect } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { Nav } from './Nav.tsx';
 
 export const App = () => {
+  const navigate = useNavigate();
   // Used for github pages to redirect to the correct page
   useEffect(() => {
     if (window.location.search.includes('redirect=')) {
-      redirect(atob(window.location.search.split('=')[1]));
+      const url = atob(window.location.search.split('=')[1]);
+      navigate(url);
     }
   }, []);
 
